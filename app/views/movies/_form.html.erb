@@ -1,0 +1,161 @@
+<%= form_for(@movie) do |f| %>
+  <% if @movie.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
+
+      <ul>
+      <% @movie.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :year %><br>
+    <%= f.text_field :year %>
+  </div>
+  <div class="field">
+    <%= f.label :rated %><br>
+    <%= f.text_field :rated %>
+  </div>
+  <div class="field">
+    <%= f.label :released %><br>
+    <%= f.text_field :released %>
+  </div>
+  <div class="field">
+    <%= f.label :season %><br>
+    <%= f.text_field :season %>
+  </div>
+  <div class="field">
+    <%= f.label :episode %><br>
+    <%= f.text_field :episode %>
+  </div>
+  <div class="field">
+    <%= f.label :runtime %><br>
+    <%= f.text_field :runtime %>
+  </div>
+  <div class="field">
+    <%= f.label :genre %><br>
+    <%= f.text_field :genre %>
+  </div>
+  <div class="field">
+    <%= f.label :director %><br>
+    <%= f.text_field :director %>
+  </div>
+  <div class="field">
+    <%= f.label :writer %><br>
+    <%= f.text_field :writer %>
+  </div>
+  <div class="field">
+    <%= f.label :actors %><br>
+    <%= f.text_area :actors %>
+  </div>
+  <div class="field">
+    <%= f.label :plot %><br>
+    <%= f.text_area :plot %>
+  </div>
+  <div class="field">
+    <%= f.label :language %><br>
+    <%= f.text_field :language %>
+  </div>
+  <div class="field">
+    <%= f.label :awards %><br>
+    <%= f.text_field :awards %>
+  </div>
+  <div class="field">
+    <%= f.label :poster %><br>
+    <%= f.text_area :poster %>
+  </div>
+  <div class="field">
+    <%= f.label :metascore %><br>
+    <%= f.text_field :metascore %>
+  </div>
+  <div class="field">
+    <%= f.label :imdbvotes %><br>
+    <%= f.text_field :imdbvotes %>
+  </div>
+  <div class="field">
+    <%= f.label :imdbid %><br>
+    <%= f.text_field :imdbid %>
+  </div>
+  <div class="field">
+    <%= f.label :seriesid %><br>
+    <%= f.text_field :seriesid %>
+  </div>
+  <div class="field">
+    <%= f.label :type %><br>
+    <%= f.text_field :type %>
+  </div>
+  <div class="field">
+    <%= f.label :tomatometer %><br>
+    <%= f.text_field :tomatometer %>
+  </div>
+  <div class="field">
+    <%= f.label :tomatoimage %><br>
+    <%= f.text_field :tomatoimage %>
+  </div>
+  <div class="field">
+    <%= f.label :tomatorating %><br>
+    <%= f.text_field :tomatorating %>
+  </div>
+  <div class="field">
+    <%= f.label :tomatoreviews %><br>
+    <%= f.text_field :tomatoreviews %>
+  </div>
+  <div class="field">
+    <%= f.label :tomatofresh %><br>
+    <%= f.text_field :tomatofresh %>
+  </div>
+  <div class="field">
+    <%= f.label :tomatorotten %><br>
+    <%= f.text_field :tomatorotten %>
+  </div>
+  <div class="field">
+    <%= f.label :tomatoconsensus %><br>
+    <%= f.text_area :tomatoconsensus %>
+  </div>
+  <div class="field">
+    <%= f.label :tomatousermeter %><br>
+    <%= f.text_field :tomatousermeter %>
+  </div>
+  <div class="field">
+    <%= f.label :tomatouserrating %><br>
+    <%= f.text_field :tomatouserrating %>
+  </div>
+  <div class="field">
+    <%= f.label :tomatouserreviews %><br>
+    <%= f.text_field :tomatouserreviews %>
+  </div>
+  <div class="field">
+    <%= f.label :tomatourl %><br>
+    <%= f.text_area :tomatourl %>
+  </div>
+  <div class="field">
+    <%= f.label :dvd %><br>
+    <%= f.text_field :dvd %>
+  </div>
+  <div class="field">
+    <%= f.label :boxoffice %><br>
+    <%= f.text_field :boxoffice %>
+  </div>
+  <div class="field">
+    <%= f.label :production %><br>
+    <%= f.text_field :production %>
+  </div>
+  <div class="field">
+    <%= f.label :website %><br>
+    <%= f.text_field :website %>
+  </div>
+  <div class="field">
+    <%= f.label :response %><br>
+    <%= f.text_field :response %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

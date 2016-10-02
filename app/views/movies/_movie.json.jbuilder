@@ -1,0 +1,2 @@
+json.extract! movie, :id, :title, :year, :rated, :released, :season, :episode, :runtime, :genre, :director, :writer, :actors, :plot, :language, :awards, :poster, :metascore, :imdbvotes, :imdbid, :seriesid, :type, :tomatometer, :tomatoimage, :tomatorating, :tomatoreviews, :tomatofresh, :tomatorotten, :tomatoconsensus, :tomatousermeter, :tomatouserrating, :tomatouserreviews, :tomatourl, :dvd, :boxoffice, :production, :website, :response, :created_at, :updated_at
+json.url movie_url(movie, format: :json)

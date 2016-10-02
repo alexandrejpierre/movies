@@ -1,0 +1,77 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  year: MyString
+  rated: MyString
+  released: MyString
+  season: MyString
+  episode: MyString
+  runtime: MyString
+  genre: MyString
+  director: MyString
+  writer: MyString
+  actors: MyText
+  plot: MyText
+  language: MyString
+  awards: MyString
+  poster: MyText
+  metascore: MyString
+  imdbvotes: MyString
+  imdbid: MyString
+  seriesid: MyString
+  type: 
+  tomatometer: MyString
+  tomatoimage: MyString
+  tomatorating: MyString
+  tomatoreviews: MyString
+  tomatofresh: MyString
+  tomatorotten: MyString
+  tomatoconsensus: MyText
+  tomatousermeter: MyString
+  tomatouserrating: MyString
+  tomatouserreviews: MyString
+  tomatourl: MyText
+  dvd: MyString
+  boxoffice: MyString
+  production: MyString
+  website: MyString
+  response: MyString
+
+two:
+  title: MyString
+  year: MyString
+  rated: MyString
+  released: MyString
+  season: MyString
+  episode: MyString
+  runtime: MyString
+  genre: MyString
+  director: MyString
+  writer: MyString
+  actors: MyText
+  plot: MyText
+  language: MyString
+  awards: MyString
+  poster: MyText
+  metascore: MyString
+  imdbvotes: MyString
+  imdbid: MyString
+  seriesid: MyString
+  type: 
+  tomatometer: MyString
+  tomatoimage: MyString
+  tomatorating: MyString
+  tomatoreviews: MyString
+  tomatofresh: MyString
+  tomatorotten: MyString
+  tomatoconsensus: MyText
+  tomatousermeter: MyString
+  tomatouserrating: MyString
+  tomatouserreviews: MyString
+  tomatourl: MyText
+  dvd: MyString
+  boxoffice: MyString
+  production: MyString
+  website: MyString
+  response: MyString

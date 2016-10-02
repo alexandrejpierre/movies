@@ -1,0 +1,97 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Movies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Year</th>
+      <th>Rated</th>
+      <th>Released</th>
+      <th>Season</th>
+      <th>Episode</th>
+      <th>Runtime</th>
+      <th>Genre</th>
+      <th>Director</th>
+      <th>Writer</th>
+      <th>Actors</th>
+      <th>Plot</th>
+      <th>Language</th>
+      <th>Awards</th>
+      <th>Poster</th>
+      <th>Metascore</th>
+      <th>Imdbvotes</th>
+      <th>Imdbid</th>
+      <th>Seriesid</th>
+      <th>Type</th>
+      <th>Tomatometer</th>
+      <th>Tomatoimage</th>
+      <th>Tomatorating</th>
+      <th>Tomatoreviews</th>
+      <th>Tomatofresh</th>
+      <th>Tomatorotten</th>
+      <th>Tomatoconsensus</th>
+      <th>Tomatousermeter</th>
+      <th>Tomatouserrating</th>
+      <th>Tomatouserreviews</th>
+      <th>Tomatourl</th>
+      <th>Dvd</th>
+      <th>Boxoffice</th>
+      <th>Production</th>
+      <th>Website</th>
+      <th>Response</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @movies.each do |movie| %>
+      <tr>
+        <td><%= movie.title %></td>
+        <td><%= movie.year %></td>
+        <td><%= movie.rated %></td>
+        <td><%= movie.released %></td>
+        <td><%= movie.season %></td>
+        <td><%= movie.episode %></td>
+        <td><%= movie.runtime %></td>
+        <td><%= movie.genre %></td>
+        <td><%= movie.director %></td>
+        <td><%= movie.writer %></td>
+        <td><%= movie.actors %></td>
+        <td><%= movie.plot %></td>
+        <td><%= movie.language %></td>
+        <td><%= movie.awards %></td>
+        <td><%= movie.poster %></td>
+        <td><%= movie.metascore %></td>
+        <td><%= movie.imdbvotes %></td>
+        <td><%= movie.imdbid %></td>
+        <td><%= movie.seriesid %></td>
+        <td><%= movie.type %></td>
+        <td><%= movie.tomatometer %></td>
+        <td><%= movie.tomatoimage %></td>
+        <td><%= movie.tomatorating %></td>
+        <td><%= movie.tomatoreviews %></td>
+        <td><%= movie.tomatofresh %></td>
+        <td><%= movie.tomatorotten %></td>
+        <td><%= movie.tomatoconsensus %></td>
+        <td><%= movie.tomatousermeter %></td>
+        <td><%= movie.tomatouserrating %></td>
+        <td><%= movie.tomatouserreviews %></td>
+        <td><%= movie.tomatourl %></td>
+        <td><%= movie.dvd %></td>
+        <td><%= movie.boxoffice %></td>
+        <td><%= movie.production %></td>
+        <td><%= movie.website %></td>
+        <td><%= movie.response %></td>
+        <td><%= link_to 'Show', movie %></td>
+        <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
+        <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Movie', new_movie_path %>
