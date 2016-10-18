@@ -5,7 +5,8 @@ module Api
 		respond_to :json
 		
 		def index
-			@movies=Movie.all
+			# Pre-filter to remove non-relevant data
+			@movies=Movie.where(Type:"movie").where.not(Poster:"N/A").where.not(Plot:"N/A")
 			params.each do |key,val|
 				if key != 'controller' and key != 'action' and key != 'movie'
 					@movies=@movies.where(key => val)
