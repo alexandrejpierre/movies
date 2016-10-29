@@ -1,6 +1,6 @@
 module Api
 	class PreferencesController < ApplicationController
-		# before_action :authenticate_token!
+		before_action :authenticate_token!
 		
 		respond_to :json
 		
