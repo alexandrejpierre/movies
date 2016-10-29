@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161029095907) do
+ActiveRecord::Schema.define(version: 20161029103615) do
 
   create_table "movies", force: :cascade do |t|
     t.string   "Title"
@@ -56,6 +56,17 @@ ActiveRecord::Schema.define(version: 20161029095907) do
     t.string   "imdbRating"
     t.string   "totalSeasons"
   end
+
+  create_table "preferences", force: :cascade do |t|
+    t.integer  "movie_id"
+    t.integer  "user_id"
+    t.string   "likes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "preferences", ["movie_id"], name: "index_preferences_on_movie_id"
+  add_index "preferences", ["user_id"], name: "index_preferences_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "pseudo"
