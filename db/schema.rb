@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161029133942) do
+ActiveRecord::Schema.define(version: 20161111130427) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20161029133942) do
     t.string   "Country"
     t.string   "imdbRating"
     t.string   "totalSeasons"
+    t.string   "freshest"
   end
 
   create_table "preferences", force: :cascade do |t|

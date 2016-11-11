@@ -13,7 +13,7 @@ module Api
 		private
 		
 		def preferences_params
-			params.require(:preference).permit(:movie_id,:user_id,:likess)
+			params.require(:preference).permit(:movie_id,:user_id,:likes)
 		end
 	end
 end
