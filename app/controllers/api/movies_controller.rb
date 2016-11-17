@@ -9,13 +9,10 @@ module Api
 			@movies=Movie.where(Type:"movie").where.not(Poster:"N/A").where.not(Plot:"N/A").where.not(Title:"#DUPE#").where(freshest:"x")
 			params.each do |key,val|
 				if key != 'controller' and key != 'action' and key != 'movie'
-					if key=='Year_min'
-						@movies=@movies.where("Year >= ?",val)
-					else if key=='Year_max'
-						@movies=@movies.where("Year <= ?",val)
+					if key=='Year'
+						@movies=@movies.where(Year: val.slice(0,4)..val.slice(4,9))
 					else	
 						@movies=@movies.where(key => val)
-					end
 					end
 				end
 			end
@@ -23,4 +20,3 @@ module Api
 		end
 	end
 end
-
