@@ -8,11 +8,11 @@ module Api
 			@user = User.new(user_params)
 			@user.save
 			respond_with @user 
-		end	
+		end
 		
 		private
 		
-		def users_params
+		def user_params
 			params.require(:user).permit(:pseudo,:email,:name,:first_name,:fb_connected)
 		end
 	end
