@@ -13,7 +13,7 @@ module Api
 		private
 		
 		def user_params
-			params.require(:user).permit(:pseudo,:email,:name,:first_name,:fb_connected)
+			params.require(:user).permit(:pseudo,:email,:name,:first_name,:fb_connected,:password)
 		end
 	end
 end
