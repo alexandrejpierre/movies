@@ -5,10 +5,13 @@ module Api
 		respond_to :json
 		
 		def create
-			@user = User.where("email = ?",preferences_params[:email]).select(:id)
-			@preference = Preference.new(movie_id: preferences_params[:movie_id], likes: preferences_params[:likes], user_id: @user)
+			@preference = Preference.new do |u|
+				u.movie_id = preferences_params[:movie_id]
+				u.likes = preferences_params[:likes]
+				u.user_id = User.where("email = ?",preferences_params[:email]).first.id
+			end
 			@preference.save
-			respond_with @preference 
+			respond_with @preference, location: nil
 		end	
 		
 		private
