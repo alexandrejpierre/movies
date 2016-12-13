@@ -16,7 +16,8 @@ module Api
 					end
 				end
 			end
-			respond_with @movies.where.not(imdbVotes:"N/A").order(imdbVotes: :desc).first(100)
+			# Added a count of the number of movies
+			render json: { count: @movies.count, data: @movies.where.not(imdbVotes:"N/A").order(imdbVotes: :desc).first(100) }
 		end
 	end
 end
