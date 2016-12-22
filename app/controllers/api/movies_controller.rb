@@ -6,7 +6,7 @@ module Api
 		
 		def index
 			# Pre-filter to remove non-relevant data
-			@movies=Movie.where(Type:"movie").where.not(Poster:"N/A").where.not(Plot:"N/A").where.not(Title:"#DUPE#").where(freshest:"x").where.not(Genre:"Short")
+			@movies=Movie.where(Type:"movie").where.not(Poster:"N/A").where.not(Plot:"N/A").where.not(Title:"#DUPE#").where(freshest:"x").where.not(IsShort:"x")
 			params.each do |key,val|
 				if key != 'controller' and key != 'action' and key != 'movie'
 					if key=='Year'
