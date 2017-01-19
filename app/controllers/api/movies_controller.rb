@@ -6,7 +6,9 @@ module Api
 		
 		def index
 			# Pre-filter to remove non-relevant data
-			@movies=Movie.where(Type:"movie").where.not(Poster:"N/A").where.not(Plot:"N/A").where.not(Title:"#DUPE#").where(freshest:"x").where.not(IsShort:"x")
+			#@movies=Movie.where(Type:"movie").where.not(Poster:"N/A").where.not(Plot:"N/A").where.not(Title:"#DUPE#").where(freshest:"x").where.not(IsShort:"x")
+			# 20170119: usage of the scope column instead of calculating it on the fly
+			@movies=Movie.where(scope:"x")
 			params.each do |key,val|
 				if key != 'controller' and key != 'action' and key != 'movie'
 					if key=='Year'
