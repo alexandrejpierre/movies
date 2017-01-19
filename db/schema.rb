@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161222200451) do
+ActiveRecord::Schema.define(version: 20170119204701) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20161222200451) do
     t.string   "totalSeasons"
     t.string   "freshest"
     t.string   "IsShort"
+    t.string   "scope"
   end
 
   create_table "preferences", force: :cascade do |t|
