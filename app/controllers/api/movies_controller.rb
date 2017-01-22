@@ -21,8 +21,17 @@ module Api
 					end
 				end
 			end
+			
+			# 20170122: random sampling of data
+			max=@movies.count
+			@movies.each do |x|
+				x.assign_attributes(rank: rand(max))
+			end
+			
 			# Added a count of the number of movies
-			render json: { count: @movies.count, data: @movies.where.not(imdbVotes:"N/A").order(imdbVotes: :desc).first(100) }
+			# 20170122: changed the number of movies returned from 100 to 500
+			# 20170122: identification of the returned movies thanks to the random sampling
+			render json: { count: @movies.count, data: @movies.order(rank: :desc).first(500) }
 		end
 	end
 end

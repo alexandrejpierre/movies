@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170119204701) do
+ActiveRecord::Schema.define(version: 20170122122253) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20170119204701) do
     t.string   "freshest"
     t.string   "IsShort"
     t.string   "scope"
+    t.integer  "rank"
   end
 
   create_table "preferences", force: :cascade do |t|
