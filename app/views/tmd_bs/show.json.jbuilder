@@ -1,0 +1,1 @@
+json.partial! "tmdbs/tmdb", tmdb: @tmdb

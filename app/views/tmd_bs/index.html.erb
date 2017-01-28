@@ -1,0 +1,91 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Tmdbs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Adult</th>
+      <th>Backdrop path</th>
+      <th>Belongs to collection</th>
+      <th>Collection</th>
+      <th>Collection name</th>
+      <th>Collection poster path</th>
+      <th>Collection backdrop path</th>
+      <th>Budget</th>
+      <th>Genres</th>
+      <th>Genres name</th>
+      <th>Homepage</th>
+      <th>Tmdb</th>
+      <th>Imdb</th>
+      <th>Original language</th>
+      <th>Original title</th>
+      <th>Overview</th>
+      <th>Popularity</th>
+      <th>Poster path</th>
+      <th>Production companies name</th>
+      <th>Production companies</th>
+      <th>Production countries iso 3166 1</th>
+      <th>Production countries name</th>
+      <th>Release date</th>
+      <th>Revenue</th>
+      <th>Runtime</th>
+      <th>Spoken languages iso 639 1</th>
+      <th>Spoken languages</th>
+      <th>Status</th>
+      <th>Tagline</th>
+      <th>Title</th>
+      <th>Video</th>
+      <th>Vote average</th>
+      <th>Vote count</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tmdbs.each do |tmdb| %>
+      <tr>
+        <td><%= tmdb.adult %></td>
+        <td><%= tmdb.backdrop_path %></td>
+        <td><%= tmdb.belongs_to_collection %></td>
+        <td><%= tmdb.collection_id %></td>
+        <td><%= tmdb.collection_name %></td>
+        <td><%= tmdb.collection_poster_path %></td>
+        <td><%= tmdb.collection_backdrop_path %></td>
+        <td><%= tmdb.budget %></td>
+        <td><%= tmdb.genres_id %></td>
+        <td><%= tmdb.genres_name %></td>
+        <td><%= tmdb.homepage %></td>
+        <td><%= tmdb.tmdb_id %></td>
+        <td><%= tmdb.imdb_id %></td>
+        <td><%= tmdb.original_language %></td>
+        <td><%= tmdb.original_title %></td>
+        <td><%= tmdb.overview %></td>
+        <td><%= tmdb.popularity %></td>
+        <td><%= tmdb.poster_path %></td>
+        <td><%= tmdb.production_companies_name %></td>
+        <td><%= tmdb.production_companies_id %></td>
+        <td><%= tmdb.production_countries_iso_3166_1 %></td>
+        <td><%= tmdb.production_countries_name %></td>
+        <td><%= tmdb.release_date %></td>
+        <td><%= tmdb.revenue %></td>
+        <td><%= tmdb.runtime %></td>
+        <td><%= tmdb.spoken_languages_iso_639_1 %></td>
+        <td><%= tmdb.spoken_languages_id %></td>
+        <td><%= tmdb.status %></td>
+        <td><%= tmdb.tagline %></td>
+        <td><%= tmdb.title %></td>
+        <td><%= tmdb.video %></td>
+        <td><%= tmdb.vote_average %></td>
+        <td><%= tmdb.vote_count %></td>
+        <td><%= link_to 'Show', tmdb %></td>
+        <td><%= link_to 'Edit', edit_tmdb_path(tmdb) %></td>
+        <td><%= link_to 'Destroy', tmdb, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tmdb', new_tmdb_path %>
