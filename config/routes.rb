@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :tmdbs
+  resources :tmdbmovies
   resources :users
   resources :movies
   

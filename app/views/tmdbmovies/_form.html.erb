@@ -1,0 +1,117 @@
+<%= form_for(@tmdbmovie) do |f| %>
+  <% if @tmdbmovie.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tmdbmovie.errors.count, "error") %> prohibited this tmdbmovie from being saved:</h2>
+
+      <ul>
+      <% @tmdbmovie.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :adult %><br>
+    <%= f.check_box :adult %>
+  </div>
+  <div class="field">
+    <%= f.label :backdrop_path %><br>
+    <%= f.text_field :backdrop_path %>
+  </div>
+  <div class="field">
+    <%= f.label :belongs_to_collection %><br>
+    <%= f.text_field :belongs_to_collection %>
+  </div>
+  <div class="field">
+    <%= f.label :budget %><br>
+    <%= f.text_field :budget %>
+  </div>
+  <div class="field">
+    <%= f.label :genres %><br>
+    <%= f.text_field :genres %>
+  </div>
+  <div class="field">
+    <%= f.label :homepage %><br>
+    <%= f.text_field :homepage %>
+  </div>
+  <div class="field">
+    <%= f.label :tmdb_id %><br>
+    <%= f.text_field :tmdb_id %>
+  </div>
+  <div class="field">
+    <%= f.label :imdb_id %><br>
+    <%= f.text_field :imdb_id %>
+  </div>
+  <div class="field">
+    <%= f.label :original_language %><br>
+    <%= f.text_field :original_language %>
+  </div>
+  <div class="field">
+    <%= f.label :original_title %><br>
+    <%= f.text_field :original_title %>
+  </div>
+  <div class="field">
+    <%= f.label :overview %><br>
+    <%= f.text_area :overview %>
+  </div>
+  <div class="field">
+    <%= f.label :popularity %><br>
+    <%= f.text_field :popularity %>
+  </div>
+  <div class="field">
+    <%= f.label :poster_path %><br>
+    <%= f.text_field :poster_path %>
+  </div>
+  <div class="field">
+    <%= f.label :production_companies %><br>
+    <%= f.text_field :production_companies %>
+  </div>
+  <div class="field">
+    <%= f.label :production_countries %><br>
+    <%= f.text_field :production_countries %>
+  </div>
+  <div class="field">
+    <%= f.label :release_date %><br>
+    <%= f.date_select :release_date %>
+  </div>
+  <div class="field">
+    <%= f.label :revenue %><br>
+    <%= f.text_field :revenue %>
+  </div>
+  <div class="field">
+    <%= f.label :runtime %><br>
+    <%= f.number_field :runtime %>
+  </div>
+  <div class="field">
+    <%= f.label :spoken_languages %><br>
+    <%= f.text_field :spoken_languages %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.text_field :status %>
+  </div>
+  <div class="field">
+    <%= f.label :tagline %><br>
+    <%= f.text_field :tagline %>
+  </div>
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :video %><br>
+    <%= f.check_box :video %>
+  </div>
+  <div class="field">
+    <%= f.label :vote_average %><br>
+    <%= f.text_field :vote_average %>
+  </div>
+  <div class="field">
+    <%= f.label :vote_count %><br>
+    <%= f.number_field :vote_count %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

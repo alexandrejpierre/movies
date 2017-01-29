@@ -1,0 +1,1 @@
+json.partial! "tmdbmovies/tmdbmovie", tmdbmovie: @tmdbmovie

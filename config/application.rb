@@ -22,5 +22,9 @@ module Films
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+    
+    # 20170129: added this setting to enable the use of json columns
+    config.active_record.schema_format = :sql
+    
   end
 end

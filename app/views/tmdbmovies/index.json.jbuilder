@@ -1,0 +1,1 @@
+json.array! @tmdbmovies, partial: 'tmdbmovies/tmdbmovie', as: :tmdbmovie

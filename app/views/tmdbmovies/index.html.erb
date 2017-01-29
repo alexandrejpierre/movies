@@ -1,0 +1,75 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Tmdbmovies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Adult</th>
+      <th>Backdrop path</th>
+      <th>Belongs to collection</th>
+      <th>Budget</th>
+      <th>Genres</th>
+      <th>Homepage</th>
+      <th>Tmdb</th>
+      <th>Imdb</th>
+      <th>Original language</th>
+      <th>Original title</th>
+      <th>Overview</th>
+      <th>Popularity</th>
+      <th>Poster path</th>
+      <th>Production companies</th>
+      <th>Production countries</th>
+      <th>Release date</th>
+      <th>Revenue</th>
+      <th>Runtime</th>
+      <th>Spoken languages</th>
+      <th>Status</th>
+      <th>Tagline</th>
+      <th>Title</th>
+      <th>Video</th>
+      <th>Vote average</th>
+      <th>Vote count</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tmdbmovies.each do |tmdbmovie| %>
+      <tr>
+        <td><%= tmdbmovie.adult %></td>
+        <td><%= tmdbmovie.backdrop_path %></td>
+        <td><%= tmdbmovie.belongs_to_collection %></td>
+        <td><%= tmdbmovie.budget %></td>
+        <td><%= tmdbmovie.genres %></td>
+        <td><%= tmdbmovie.homepage %></td>
+        <td><%= tmdbmovie.tmdb_id %></td>
+        <td><%= tmdbmovie.imdb_id %></td>
+        <td><%= tmdbmovie.original_language %></td>
+        <td><%= tmdbmovie.original_title %></td>
+        <td><%= tmdbmovie.overview %></td>
+        <td><%= tmdbmovie.popularity %></td>
+        <td><%= tmdbmovie.poster_path %></td>
+        <td><%= tmdbmovie.production_companies %></td>
+        <td><%= tmdbmovie.production_countries %></td>
+        <td><%= tmdbmovie.release_date %></td>
+        <td><%= tmdbmovie.revenue %></td>
+        <td><%= tmdbmovie.runtime %></td>
+        <td><%= tmdbmovie.spoken_languages %></td>
+        <td><%= tmdbmovie.status %></td>
+        <td><%= tmdbmovie.tagline %></td>
+        <td><%= tmdbmovie.title %></td>
+        <td><%= tmdbmovie.video %></td>
+        <td><%= tmdbmovie.vote_average %></td>
+        <td><%= tmdbmovie.vote_count %></td>
+        <td><%= link_to 'Show', tmdbmovie %></td>
+        <td><%= link_to 'Edit', edit_tmdbmovie_path(tmdbmovie) %></td>
+        <td><%= link_to 'Destroy', tmdbmovie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tmdbmovie', new_tmdbmovie_path %>

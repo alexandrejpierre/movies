@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class TmdbTest < ActiveSupport::TestCase
+class TmdbmovieTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
