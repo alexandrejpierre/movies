@@ -30,7 +30,8 @@ module Api
 			# Added a count of the number of movies
 			# 20170122: changed the number of movies returned from 100 to 500
 			# 20170122: identification of the returned movies thanks to the random sampling
-			render json: { count: @movies.count, data: @movies.order(rank: :desc).first(10) }
+			# 20170129: sorted by rating
+			render json: { count: @movies.count, data: @movies.order(vote_average: :desc).first(100) }
 		end
 	end
 end
