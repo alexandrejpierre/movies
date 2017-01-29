@@ -5,6 +5,9 @@ module Api
 		respond_to :json
 		
 		def index
+			# Initialisation from the tmdb table
+			@movies=Tmdbmovie.all
+			# Filtering based on sent parameters
 			params.each do |key,val|
 				if key != 'controller' and key != 'action' and key != 'movie'
 					if key=='release_year'
