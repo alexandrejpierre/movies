@@ -6,7 +6,7 @@ CREATE TABLE "preferences" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "mo
 CREATE INDEX "index_preferences_on_movie_id" ON "preferences" ("movie_id");
 CREATE INDEX "index_preferences_on_user_id" ON "preferences" ("user_id");
 CREATE TABLE "admins" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar, "api_token" varchar);
-CREATE TABLE "tmdbmovies" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "adult" boolean, "backdrop_path" varchar, "belongs_to_collection" varchar, "budget" float, "genres" varchar, "homepage" varchar, "tmdb_id" varchar, "imdb_id" varchar, "original_language" varchar, "original_title" varchar, "overview" text, "popularity" float, "poster_path" varchar, "production_companies" varchar, "production_countries" varchar, "release_date" date, "revenue" float, "runtime" integer, "spoken_languages" varchar, "status" varchar, "tagline" varchar, "title" varchar, "video" boolean, "vote_average" float, "vote_count" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL);
+CREATE TABLE "tmdbmovies" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "adult" boolean, "backdrop_path" varchar, "belongs_to_collection" varchar, "budget" float, "genres" varchar, "homepage" varchar, "tmdb_id" varchar, "imdb_id" varchar, "original_language" varchar, "original_title" varchar, "overview" text, "popularity" float, "poster_path" varchar, "production_companies" varchar, "production_countries" varchar, "release_date" date, "revenue" float, "runtime" integer, "spoken_languages" varchar, "status" varchar, "tagline" varchar, "title" varchar, "video" boolean, "vote_average" float, "vote_count" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "release_year" integer);
 INSERT INTO schema_migrations (version) VALUES ('20160903183055');
 
 INSERT INTO schema_migrations (version) VALUES ('20160903195901');
@@ -42,4 +42,6 @@ INSERT INTO schema_migrations (version) VALUES ('20170119204701');
 INSERT INTO schema_migrations (version) VALUES ('20170122122253');
 
 INSERT INTO schema_migrations (version) VALUES ('20170129135051');
+
+INSERT INTO schema_migrations (version) VALUES ('20170129172212');
 
