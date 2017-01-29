@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170128135445) do
+ActiveRecord::Schema.define(version: 20170128140355) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
@@ -81,31 +81,8 @@ ActiveRecord::Schema.define(version: 20170128135445) do
   add_index "preferences", ["movie_id"], name: "index_preferences_on_movie_id"
   add_index "preferences", ["user_id"], name: "index_preferences_on_user_id"
 
-  create_table "tmdbs", force: :cascade do |t|
-    t.boolean  "adult"
-    t.string   "backdrop_path"
-    t.boolean  "belongs_to_collection"
-    t.float    "budget"
-    t.string   "homepage"
-    t.string   "tmdb_id"
-    t.string   "imdb_id"
-    t.string   "original_language"
-    t.string   "original_title"
-    t.text     "overview"
-    t.float    "popularity"
-    t.string   "poster_path"
-    t.date     "release_date"
-    t.float    "revenue"
-    t.integer  "runtime"
-    t.string   "status"
-    t.string   "tagline"
-    t.string   "title"
-    t.boolean  "video"
-    t.float    "vote_average"
-    t.integer  "vote_count"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-  end
+# Could not dump table "tmdbs" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "users", force: :cascade do |t|
     t.string   "pseudo"
