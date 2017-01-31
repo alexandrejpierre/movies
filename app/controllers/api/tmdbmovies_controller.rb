@@ -6,7 +6,8 @@ module Api
 		
 		def index
 			# Initialisation from the tmdb table
-			@movies=Tmdbmovie.all
+			# 20170131: Removal of adult movies
+			@movies=Tmdbmovie.where(adult: false)
 			# Filtering based on sent parameters
 			params.each do |key,val|
 				if key != 'controller' and key != 'action' and key != 'movie'
@@ -22,16 +23,17 @@ module Api
 			end
 			
 			# 20170122: random sampling of data
-			max=@movies.count
-			@movies.each do |x|
-				x.assign_attributes(rank: rand(max))
-			end
+			# 20170130: random sampling commenting
+			#max=@movies.count
+			#@movies.each do |x|
+				#x.assign_attributes(rank: rand(max))
+			#end
 			
 			# Added a count of the number of movies
 			# 20170122: changed the number of movies returned from 100 to 500
 			# 20170122: identification of the returned movies thanks to the random sampling
-			# 20170129: sorted by rating
-			render json: { count: @movies.count, data: @movies.order(vote_average: :desc).first(100) }
+			# 20170131: sorted by popularity
+			render json: { count: @movies.count, data: @movies.order(popularity: :desc).first(100) }
 		end
 	end
 end

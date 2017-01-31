@@ -1,4 +1,5 @@
 class Movie < ActiveRecord::Base
-	has_many :preferences, dependent: :destroy 
-	has_many :users, through: :preferences
+	# 20170131: commented out the lines
+	#has_many :preferences, dependent: :destroy 
+	#has_many :users, through: :preferences
 end

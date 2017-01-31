@@ -3,6 +3,7 @@ class Preference < ActiveRecord::Base
 	validates :likes, presence: true, :inclusion => { :in => ["Y","N","N/A"]}
 	validates :user_id, presence: true
 	validates :movie_id, presence: true
-	belongs_to :movie
+	# 20170131: changed movie to tmdbmovie
+	belongs_to :tmdbmovie
 	belongs_to :user
 end
