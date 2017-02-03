@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170129183339) do
+ActiveRecord::Schema.define(version: 20170203202419) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
@@ -74,11 +74,13 @@ ActiveRecord::Schema.define(version: 20170129183339) do
     t.integer  "movie_id"
     t.integer  "user_id"
     t.string   "likes"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "tmdbmovie_id"
   end
 
   add_index "preferences", ["movie_id"], name: "index_preferences_on_movie_id"
+  add_index "preferences", ["tmdbmovie_id"], name: "index_preferences_on_tmdbmovie_id"
   add_index "preferences", ["user_id"], name: "index_preferences_on_user_id"
 
   create_table "tmdbmovies", force: :cascade do |t|
@@ -111,6 +113,8 @@ ActiveRecord::Schema.define(version: 20170129183339) do
     t.datetime "updated_at",            null: false
     t.integer  "release_year"
     t.integer  "rank"
+    t.string   "cast"
+    t.string   "crew"
   end
 
   create_table "users", force: :cascade do |t|
