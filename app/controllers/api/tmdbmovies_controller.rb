@@ -10,7 +10,7 @@ module Api
 			@u_id=User.where("email = ?",params[:email]).first.id
 			# 20170131: Removal of adult movies
 			# 20170203: Removal of the films that the users has already seen
-			@movies=Tmdbmovie.joins("LEFT OUTER JOIN preferences ON preferences.tmdbmovie_id =tmdbmovies.id AND preferences.user_id=#{@u_id}").where(adult: false)
+			@movies=Tmdbmovie.joins("LEFT OUTER JOIN preferences ON preferences.tmdbmovie_id =tmdbmovies.id AND preferences.user_id=#{@u_id}").where("preferences.created_at is ?",nil).where(adult: false)
 			# Filtering based on sent parameters
 			params.each do |key,val|
 				if key != 'controller' and key != 'action' and key != 'movie' and key !='email'
