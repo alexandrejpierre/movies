@@ -17,7 +17,8 @@ module Api
 					if key=='release_year'
 						@movies=@movies.where(release_year: val.slice(0,4)..val.slice(4,9))
 			# 20170122: Added the elsif clause to fix the filtering on Genre and Country
-					elsif (key=='genres')
+			# 20170205: added spoken_languages and production_countries to the filter
+					elsif (key=='genres' or key=='spoken_languages' or key=='production_countries')
 						@movies=@movies.where("\"#{key}\" LIKE ?","%#{val}%")
 					else
 						@movies=@movies.where(key => val)
