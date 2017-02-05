@@ -6,7 +6,7 @@ module Api
 		
 		def create
 			@preference = Preference.new do |u|
-				u.movie_id = preferences_params[:movie_id]
+				u.tmdbmovie_id = preferences_params[:tmdbmovie_id]
 				u.likes = preferences_params[:likes]
 				u.user_id = User.where("email = ?",preferences_params[:email]).first.id
 			end
@@ -17,7 +17,7 @@ module Api
 		private
 		
 		def preferences_params
-			params.require(:preference).permit(:movie_id,:email,:likes)
+			params.require(:preference).permit(:tmdbmovie_id,:email,:likes)
 		end
 	end
 end
