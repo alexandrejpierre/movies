@@ -4,6 +4,13 @@ module Api
 		
 		respond_to :json
 		
+		# 20170220: added an index action to log the user in ; check if the couple (email,password) exists in the db
+		
+		def index
+			@a=User.find_by(email: params[:email]).try(:authenticate, params[:password])
+			respond_with @a
+		end
+		
 		def create
 			@user = User.new(user_params)
 			@user.save
