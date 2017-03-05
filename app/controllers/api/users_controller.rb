@@ -17,10 +17,19 @@ module Api
 			respond_with @user 
 		end
 		
+		def update
+			@status = User.find_by(id: user_update_params[:id]).update_attributes(fb_connected: user_update_params[:fb_connected])
+			respond_with @status
+		end
+		
 		private
 		
 		def user_params
 			params.require(:user).permit(:pseudo,:email,:name,:first_name,:fb_connected,:password)
+		end
+		
+		def user_update_params
+			params.permit(:id,:fb_connected)
 		end
 	end
 end
