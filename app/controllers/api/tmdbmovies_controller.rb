@@ -10,7 +10,8 @@ module Api
 			@u_id=User.where("email = ?",params[:email]).first.id
 			# 20170131: Removal of adult movies
 			# 20170203: Removal of the films that the users has already seen
-			@movies=Tmdbmovie.joins("LEFT OUTER JOIN preferences ON preferences.tmdbmovie_id =tmdbmovies.id AND preferences.user_id=#{@u_id}").where("preferences.created_at is ?",nil).where(adult: false)
+			# 20170306: Added the relevant_columns scope
+			@movies=Tmdbmovie.relevant_columns.joins("LEFT OUTER JOIN preferences ON preferences.tmdbmovie_id = tmdbmovies.id AND preferences.user_id=#{@u_id}").where("preferences.created_at is ?",nil).where(adult: false)
 			# Filtering based on sent parameters
 			params.each do |key,val|
 				if key != 'controller' and key != 'action' and key != 'movie' and key !='email'
@@ -37,7 +38,8 @@ module Api
 			# 20170122: changed the number of movies returned from 100 to 500
 			# 20170122: identification of the returned movies thanks to the random sampling
 			# 20170131: sorted by popularity and limit to 100
-			render json: { count: @movies.count, data: @movies.order(popularity: :desc).first(100) }
+			# 20170306: modified the count to take into account the columns scope
+			render json: { count: @movies.count(:all), data: @movies.order(popularity: :desc).first(100) }
 		end
 	end
 end
