@@ -13,8 +13,9 @@ module Api
 			# 20170306: Added the relevant_columns scope
 			@movies=Tmdbmovie.relevant_columns.joins("LEFT OUTER JOIN preferences ON preferences.tmdbmovie_id = tmdbmovies.id AND preferences.user_id=#{@u_id}").where("preferences.created_at is ?",nil).where(adult: false)
 			# Filtering based on sent parameters
+			# 20170307: changed movie to tmdbmovie
 			params.each do |key,val|
-				if key != 'controller' and key != 'action' and key != 'movie' and key !='email'
+				if key != 'controller' and key != 'action' and key != 'tmdbmovie' and key !='email'
 					if key=='release_year'
 						@movies=@movies.where(release_year: val.slice(0,4)..val.slice(4,9))
 			# 20170122: Added the elsif clause to fix the filtering on Genre and Country
