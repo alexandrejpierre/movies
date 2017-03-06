@@ -16,10 +16,19 @@ module Api
 			respond_with @preference, location: nil
 		end	
 
+		def update
+			@u_id=User.find_by("email = ?",update_preferences_params[:email]).id
+			@status=Preference.where("user_id = ?",@u_id).find_by("movie_id = ?",update_preferences_params[:id]).update_attributes(favorite: 
+		end
+		
 		private
 		
 		def preferences_params
 			params.require(:preference).permit(:tmdbmovie_id,:email,:likes,:favorite)
+		end
+
+		def update_preferences_params
+			params.permit(:id,:email,:likes)
 		end
 	end
 end
