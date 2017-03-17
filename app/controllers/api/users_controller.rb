@@ -18,18 +18,23 @@ module Api
 		end
 		
 		def update
-			@status = User.find_by(id: user_update_params[:id]).update_attributes(fb_connected: user_update_params[:fb_connected])
-			respond_with @status
+			@user = User.find_by(id: user_update_params[:id])
+			user_update_params.each do |key,val|
+				if key != "id"
+					@user.update_attributes(key => val)
+				end
+			end
+			respond_with @user
 		end
 		
 		private
 		
 		def user_params
-			params.require(:user).permit(:pseudo,:email,:name,:first_name,:fb_connected,:password)
+			params.require(:user).permit(:pseudo,:email,:name,:first_name,:fb_connected,:password, :gender, :age_range, :locale, :picture_url)
 		end
 		
 		def user_update_params
-			params.permit(:id,:fb_connected)
+			params.permit(:id,:fb_connected, :gender, :age_range, :locale, :picture_url)
 		end
 	end
 end
