@@ -11,7 +11,8 @@ module Api
 			# 20170131: Removal of adult movies
 			# 20170203: Removal of the films that the users has already seen
 			# 20170306: Added the relevant_columns scope
-			@movies=Tmdbmovie.relevant_columns.joins("LEFT OUTER JOIN preferences ON preferences.tmdbmovie_id = tmdbmovies.id AND preferences.user_id=#{@u_id}").where("preferences.created_at is ?",nil).where(adult: false)
+			# 20170317: Rollbacked the relevant_columns
+			@movies=Tmdbmovie.joins("LEFT OUTER JOIN preferences ON preferences.tmdbmovie_id = tmdbmovies.id AND preferences.user_id=#{@u_id}").where("preferences.created_at is ?",nil).where(adult: false)
 			# Filtering based on sent parameters
 			# 20170307: changed movie to tmdbmovie
 			params.each do |key,val|
