@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :friendships
   resources :tmdbmovies
   resources :users
   resources :movies

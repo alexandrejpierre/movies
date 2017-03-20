@@ -8,6 +8,7 @@ CREATE INDEX "index_preferences_on_movie_id" ON "preferences" ("movie_id");
 CREATE INDEX "index_preferences_on_user_id" ON "preferences" ("user_id");
 CREATE INDEX "index_preferences_on_tmdbmovie_id" ON "preferences" ("tmdbmovie_id");
 CREATE TABLE "movies" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "Title" varchar, "Year" varchar, "Rated" varchar, "Released" varchar, "Season" varchar, "Episode" varchar, "Runtime" varchar, "Genre" varchar, "Director" varchar, "Writer" varchar, "Actors" text, "Plot" text, "Language" varchar, "Awards" varchar, "Poster" text, "Metascore" varchar, "imdbVotes" varchar, "imdbID" varchar, "seriesID" varchar, "Type" varchar, "tomatoMeter" varchar, "tomatoImage" varchar, "tomatoRating" varchar, "tomatoReviews" varchar, "tomatoFresh" varchar, "tomatoRotten" varchar, "tomatoConsensus" text, "tomatoUserMeter" varchar, "tomatoUserRating" varchar, "tomatoUserReviews" varchar, "tomatoURL" text, "DVD" varchar, "BoxOffice" varchar, "Production" varchar, "Website" varchar, "Response" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "Country" varchar, "imdbRating" varchar, "totalSeasons" varchar, "freshest" varchar, "IsShort" varchar, "scope" varchar, "rank" integer);
+CREATE TABLE "friendships" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "friend_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL);
 INSERT INTO schema_migrations (version) VALUES ('20160903183055');
 
 INSERT INTO schema_migrations (version) VALUES ('20160903195901');
@@ -65,4 +66,6 @@ INSERT INTO schema_migrations (version) VALUES ('20170223194533');
 INSERT INTO schema_migrations (version) VALUES ('20170317191944');
 
 INSERT INTO schema_migrations (version) VALUES ('20170320203510');
+
+INSERT INTO schema_migrations (version) VALUES ('20170320210949');
 
