@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170317191944) do
+ActiveRecord::Schema.define(version: 20170320203510) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
@@ -136,6 +136,7 @@ ActiveRecord::Schema.define(version: 20170317191944) do
     t.integer  "age_range"
     t.string   "locale"
     t.string   "picture_url"
+    t.string   "fb_id"
   end
 
 end

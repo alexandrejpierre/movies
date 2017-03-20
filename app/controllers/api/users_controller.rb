@@ -30,11 +30,11 @@ module Api
 		private
 		
 		def user_params
-			params.require(:user).permit(:pseudo,:email,:name,:first_name,:fb_connected,:password, :gender, :age_range, :locale, :picture_url)
+			params.require(:user).permit(:pseudo,:email,:name,:first_name,:fb_connected,:password, :gender, :age_range, :locale, :picture_url, :fb_id)
 		end
 		
 		def user_update_params
-			params.permit(:id,:fb_connected, :gender, :age_range, :locale, :picture_url)
+			params.permit(:id,:fb_connected, :gender, :age_range, :locale, :picture_url, :fb_id)
 		end
 	end
 end
