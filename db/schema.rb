@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170320210949) do
+ActiveRecord::Schema.define(version: 20170331200640) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
@@ -128,6 +128,11 @@ ActiveRecord::Schema.define(version: 20170320210949) do
     t.string   "videos"
     t.string   "trailer_site"
     t.string   "trailer_url"
+    t.text     "overview_fr"
+    t.string   "title_fr"
+    t.text     "videos_fr"
+    t.string   "trailer_site_fr"
+    t.string   "trailer_url_fr"
   end
 
   create_table "users", force: :cascade do |t|
