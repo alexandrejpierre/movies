@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170331200640) do
+ActiveRecord::Schema.define(version: 20170401124212) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
@@ -133,6 +133,7 @@ ActiveRecord::Schema.define(version: 20170331200640) do
     t.text     "videos_fr"
     t.string   "trailer_site_fr"
     t.string   "trailer_url_fr"
+    t.integer  "friends_likes"
   end
 
   create_table "users", force: :cascade do |t|

@@ -12,7 +12,8 @@ module Api
 			# 20170203: Removal of the films that the users has already seen
 			# 20170306: Added the relevant_columns scope
 			# 20170317: Rollbacked the relevant_columns
-			@movies=Tmdbmovie.joins("LEFT OUTER JOIN preferences ON preferences.tmdbmovie_id = tmdbmovies.id AND preferences.user_id=#{@u_id}").where("preferences.created_at is ?",nil).where(adult: false)
+			# 20170401: Updated the relevant columns
+			@movies=Tmdbmovie.relevant_columns.joins("LEFT OUTER JOIN preferences ON preferences.tmdbmovie_id = tmdbmovies.id AND preferences.user_id=#{@u_id}").where("preferences.created_at is ?",nil).where(adult: false)
 			# Filtering based on sent parameters
 			# 20170307: changed movie to tmdbmovie
 			params.each do |key,val|
@@ -41,7 +42,8 @@ module Api
 			# 20170122: identification of the returned movies thanks to the random sampling
 			# 20170131: sorted by popularity and limit to 100
 			# 20170306: modified the count to take into account the columns scope
-			render json: { count: @movies.count(:all), data: @movies.order(popularity: :desc).first(100) }
+			# 20170401: changed the output to 50 movies
+			render json: { count: @movies.count(:all), data: @movies.order(popularity: :desc).first(50) }
 		end
 	end
 end
