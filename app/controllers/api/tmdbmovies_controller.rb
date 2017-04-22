@@ -37,6 +37,14 @@ module Api
 				#x.assign_attributes(rank: rand(max))
 			#end
 			
+			# 20170403: if the user is connected with Fb, calculation of the numbre of friends likes for each movie returned
+			#@movies=@movies.order(popularity: :desc).first(50)
+			#if	User.find_by(id: @u_id).fb_connected == 'Y'
+			#	@movies.each do |m|
+					
+			#	end
+			#end
+			
 			# Added a count of the number of movies
 			# 20170122: changed the number of movies returned from 100 to 500
 			# 20170122: identification of the returned movies thanks to the random sampling

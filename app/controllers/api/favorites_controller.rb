@@ -1,7 +1,7 @@
 module Api
     class FavoritesController < ApplicationController
-                before_action :authenticate_token!
-                respond_to :json
+        before_action :authenticate_token!
+        respond_to :json
 		
 		# 20170306: created the index action to retrieve the favorites of a user
 		# 20170307: used the relevant_columns scope to filter the output
@@ -22,7 +22,7 @@ module Api
 
 		# 20170306: created the update parameters
 		def update_favorites_params
-				params.permit(:id,:email,:favorite)
+			params.permit(:id,:email,:favorite)
 		end		
 		
     end

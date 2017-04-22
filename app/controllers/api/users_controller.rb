@@ -5,9 +5,13 @@ module Api
 		respond_to :json
 		
 		# 20170220: added an index action to log the user in ; check if the couple (email,password) exists in the db
-		
+		# 20170422: covered the case when the user log in with Fb and therefore has no password
 		def index
-			@a=User.find_by(email: params[:email]).try(:authenticate, params[:password])
+			if params[:fb_login]='Y'
+				@a=User.find_by(email: params[:email])
+			else
+				@a=User.find_by(email: params[:email]).try(:authenticate, params[:password])
+			end
 			respond_with @a
 		end
 		
