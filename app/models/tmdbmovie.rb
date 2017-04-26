@@ -2,6 +2,8 @@ class Tmdbmovie < ActiveRecord::Base
 	# 20170131: added the lines
 	has_many :preferences, dependent: :destroy 
 	has_many :users, through: :preferences
+	# 20170426: added the relationship to the recommendations table
+	has_many :recommendations, dependent: :destroy
 	
 	# 20170306: added a scope to select only the relevant columns
 	# 20170307: added the id to the list of relevant columns
