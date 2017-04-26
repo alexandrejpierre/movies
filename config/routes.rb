@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 	resources :tmdbmovies
 	resources :favorites
 	resources :friendships
+	resources :friendsfavorites
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
