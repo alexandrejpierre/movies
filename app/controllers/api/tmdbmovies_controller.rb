@@ -14,22 +14,29 @@ module Api
 			# 20170317: Rollbacked the relevant_columns
 			# 20170401: Updated the relevant columns
 			@movies=Tmdbmovie.relevant_columns.joins("LEFT OUTER JOIN preferences ON preferences.tmdbmovie_id = tmdbmovies.id AND preferences.user_id=#{@u_id}").where("preferences.created_at is ?",nil).where(adult: false)
-			# Filtering based on sent parameters
-			# 20170307: changed movie to tmdbmovie
-			params.each do |key,val|
-				if key != 'controller' and key != 'action' and key != 'tmdbmovie' and key !='email' and key !='movie'
-					if key=='release_year'
-						@movies=@movies.where(release_year: val.slice(0,4)..val.slice(4,9))
-			# 20170122: Added the elsif clause to fix the filtering on Genre and Country
-			# 20170205: added spoken_languages and production_countries to the filter
-					elsif (key=='genres' or key=='spoken_languages' or key=='production_countries')
-						@movies=@movies.where("\"#{key}\" LIKE ?","%#{val}%")
-					else
-						@movies=@movies.where(key => val)
+			# 20170428: Added the if to create the random case
+			if params[:random]=='Y'
+				ids=@movies.pluck(:id)
+				level=rand(ids.length-51)
+				selected_ids=ids[level..level+50]
+				@movies=@movies.where("tmdbmovies.id in (?)",selected_ids)
+			else
+				# Filtering based on sent parameters
+				# 20170307: changed movie to tmdbmovie
+				params.each do |key,val|
+					if key != 'controller' and key != 'action' and key != 'tmdbmovie' and key !='email' and key !='movie' and key != 'random'
+						if key=='release_year'
+							@movies=@movies.where(release_year: val.slice(0,4)..val.slice(4,9))
+				# 20170122: Added the elsif clause to fix the filtering on Genre and Country
+				# 20170205: added spoken_languages and production_countries to the filter
+						elsif (key=='genres' or key=='spoken_languages' or key=='production_countries')
+							@movies=@movies.where("\"#{key}\" LIKE ?","%#{val}%")
+						else
+							@movies=@movies.where(key => val)
+						end
 					end
 				end
 			end
-			
 			# 20170122: random sampling of data
 			# 20170130: random sampling commenting
 			#max=@movies.count
