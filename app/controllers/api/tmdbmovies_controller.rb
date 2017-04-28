@@ -36,6 +36,7 @@ module Api
 						end
 					end
 				end
+				@movies=@movies.order(popularity: :desc).first(50)
 			end
 			# 20170122: random sampling of data
 			# 20170130: random sampling commenting
@@ -58,7 +59,8 @@ module Api
 			# 20170131: sorted by popularity and limit to 100
 			# 20170306: modified the count to take into account the columns scope
 			# 20170401: changed the output to 50 movies
-			render json: { count: @movies.count(:all), data: @movies.order(popularity: :desc).first(50) }
+			# 20170428: moved the movies ordering and filtering in the else clause above
+			render json: { count: @movies.count(:all), data: @movies }
 		end
 	end
 end
