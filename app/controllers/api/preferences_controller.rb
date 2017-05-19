@@ -8,7 +8,7 @@ module Api
 			@preference = Preference.new do |u|
 				u.tmdbmovie_id = preferences_params[:tmdbmovie_id]
 				u.likes = preferences_params[:likes]
-				u.user_id = User.find_by("email = ?",preferences_params[:email]).id
+				u.user_id = preferences_params[:user_id]
 				# 20170502: added the favorite field following its creation
 				u.favorite=preferences_params[:favorite]
 			end
@@ -19,7 +19,7 @@ module Api
 		private
 		
 		def preferences_params
-			params.require(:preference).permit(:tmdbmovie_id,:email,:likes,:favorite)
+			params.require(:preference).permit(:tmdbmovie_id,:user_id,:likes,:favorite)
 		end
 	end
 end

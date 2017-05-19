@@ -7,13 +7,13 @@ module Api
 		def index
 			# Initialisation from the tmdb table
 			# 20170203: retrieval of the user_id based on their email
-			@u_id=User.where("email = ?",params[:email]).first.id
+			# params[:user_id]=User.where("email = ?",params[:email]).first.id
 			# 20170131: Removal of adult movies
 			# 20170203: Removal of the films that the users has already seen
 			# 20170306: Added the relevant_columns scope
 			# 20170317: Rollbacked the relevant_columns
 			# 20170401: Updated the relevant columns
-			@movies=Tmdbmovie.relevant_columns.joins("LEFT OUTER JOIN preferences ON preferences.tmdbmovie_id = tmdbmovies.id AND preferences.user_id=#{@u_id}").where("preferences.created_at is ?",nil).where(adult: false)
+			@movies=Tmdbmovie.relevant_columns.joins("LEFT OUTER JOIN preferences ON preferences.tmdbmovie_id = tmdbmovies.id AND preferences.user_id=#{params[:user_id]}").where("preferences.created_at is ?",nil).where(adult: false)
 			# 20170428: Added the if to create the random case
 			if params[:random]=='Y'
 				ids=@movies.pluck(:id)
@@ -24,7 +24,7 @@ module Api
 				# Filtering based on sent parameters
 				# 20170307: changed movie to tmdbmovie
 				params.each do |key,val|
-					if key != 'controller' and key != 'action' and key != 'tmdbmovie' and key !='email' and key !='movie' and key != 'random'
+					if key != 'controller' and key != 'action' and key != 'tmdbmovie' and key !='user_id' and key !='movie' and key != 'random'
 						if key=='release_year'
 							@movies=@movies.where(release_year: val.slice(0,4)..val.slice(4,9))
 				# 20170122: Added the elsif clause to fix the filtering on Genre and Country
@@ -38,19 +38,14 @@ module Api
 				end
 				@movies=@movies.order(popularity: :desc).first(50)
 			end
-			# 20170122: random sampling of data
-			# 20170130: random sampling commenting
-			#max=@movies.count
-			#@movies.each do |x|
-				#x.assign_attributes(rank: rand(max))
-			#end
 			
 			# 20170403: if the user is connected with Fb, calculation of the numbre of friends likes for each movie returned
-			#@movies=@movies.order(popularity: :desc).first(50)
-			#if	User.find_by(id: @u_id).fb_connected == 'Y'
-			#	@movies.each do |m|
-					
-			#	end
+			# 20170428: calculation for each movie through an SQL query
+			#if User.find_by(id: params[:user_id]).fb_connected == 'Y'
+				#@movies.each do |m|
+					#x=ActiveRecord::Base.connection.execute("SELECT count(*) AS nb FROM preferences p INNER JOIN friendships f ON f.user_id=#{params[:user_id]} AND f.friend_id = p.user_id WHERE p.tmdbmovie_id=#{m.id} AND p.likes='Y'")
+					#m.assign_attributes(friends_likes: x[0]["nb"])
+				#end
 			#end
 			
 			# Added a count of the number of movies
