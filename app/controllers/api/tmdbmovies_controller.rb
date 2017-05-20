@@ -35,10 +35,10 @@ module Api
 			max=Recommendation.where("user_id = ?",params[:user_id]).maximum(:created_at)
 			recommendations=Recommendation.where("user_id = ?",params[:user_id]).where(created_at: max.midnight..Time.now).pluck(:tmdbmovie_id)
 			# Selection of recommendations among the tmdbmovies 
-			if @movies.where("id in (?)", recommendations).empty?
+			if @movies.where("tmdbmovies.id in (?)", recommendations).empty?
 				normal_mode
 			else
-				@movies=@movies.where("id in (?)", recommendations)
+				@movies=@movies.where("tmdbmovies.id in (?)", recommendations)
 			end
 		end
 		
