@@ -5,10 +5,10 @@ module Api
 		respond_to :json
 		
 		def random_mode
-			ids=@movies.pluck(:id)
+			ids=@movies.where.not(overview: nil).where.not(vote_average: 0.0).where.not(poster_path: nil).pluck(:id)
 			level=rand(ids.length-51)
 			selected_ids=ids[level..level+50]
-			@movies=@movies.where("tmdbmovies.id in (?)",selected_ids).where.not(overview: nil).where.not(vote_average: 0.0).where.not(poster_path: nil)
+			@movies=@movies.where("tmdbmovies.id in (?)",selected_ids)
 		end
 		
 		def normal_mode
