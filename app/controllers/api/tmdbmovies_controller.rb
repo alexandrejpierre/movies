@@ -15,7 +15,7 @@ module Api
 			# Filtering based on sent parameters
 			# 20170307: changed movie to tmdbmovie
 			params.each do |key,val|
-				if key != 'controller' and key != 'action' and key != 'tmdbmovie' and key !='user_id' and key !='movie' and key != 'random'
+				if key != 'controller' and key != 'action' and key != 'tmdbmovie' and key !='user_id' and key !='movie' and key != 'random' and key != 'has_filters'
 					if key=='release_year'
 						@movies=@movies.where(release_year: val.slice(0,4)..val.slice(4,9))
 			# 20170122: Added the elsif clause to fix the filtering on Genre and Country
