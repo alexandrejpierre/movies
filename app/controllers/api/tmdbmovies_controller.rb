@@ -8,7 +8,7 @@ module Api
 			ids=@movies.pluck(:id)
 			level=rand(ids.length-51)
 			selected_ids=ids[level..level+50]
-			@movies=@movies.where("tmdbmovies.id in (?)",selected_ids)
+			@movies=@movies.where("tmdbmovies.id in (?)",selected_ids).where.not(overview: nil).where.not(vote_average: 0.0).where.not(poster_path: nil)
 		end
 		
 		def normal_mode
