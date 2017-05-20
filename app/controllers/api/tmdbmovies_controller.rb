@@ -4,6 +4,44 @@ module Api
 		
 		respond_to :json
 		
+		def random_mode
+			ids=@movies.pluck(:id)
+			level=rand(ids.length-51)
+			selected_ids=ids[level..level+50]
+			@movies=@movies.where("tmdbmovies.id in (?)",selected_ids)
+		end
+		
+		def normal_mode
+			# Filtering based on sent parameters
+			# 20170307: changed movie to tmdbmovie
+			params.each do |key,val|
+				if key != 'controller' and key != 'action' and key != 'tmdbmovie' and key !='user_id' and key !='movie' and key != 'random'
+					if key=='release_year'
+						@movies=@movies.where(release_year: val.slice(0,4)..val.slice(4,9))
+			# 20170122: Added the elsif clause to fix the filtering on Genre and Country
+			# 20170205: added spoken_languages and production_countries to the filter
+					elsif (key=='genres' or key=='spoken_languages' or key=='production_countries')
+						@movies=@movies.where("\"#{key}\" LIKE ?","%#{val}%")
+					else
+						@movies=@movies.where(key => val)
+					end
+				end
+			end
+			@movies=@movies.order(popularity: :desc)
+		end
+		
+		def recommendation_mode
+			# Determines the latest recommendations
+			max=Recommendation.where(params[:user_id]).maximum(:created_at)
+			recommendations=Recommendation.where(params[:user_id]).where(created_at: max.midnight..Time.now).pluck(:tmdbmovie_id)
+			# Selection of recommendations among the tmdbmovies 
+			if @movies.where("id in (?)", recommendations).empty?
+				normal_mode
+			else
+				@movies=@movies.where("id in (?)", recommendations)
+			end
+		end
+		
 		def index
 			# Initialisation from the tmdb table
 			# 20170203: retrieval of the user_id based on their email
@@ -16,27 +54,12 @@ module Api
 			@movies=Tmdbmovie.relevant_columns.joins("LEFT OUTER JOIN preferences ON preferences.tmdbmovie_id = tmdbmovies.id AND preferences.user_id=#{params[:user_id]}").where("preferences.created_at is ?",nil).where(adult: false)
 			# 20170428: Added the if to create the random case
 			if params[:random]=='Y'
-				ids=@movies.pluck(:id)
-				level=rand(ids.length-51)
-				selected_ids=ids[level..level+50]
-				@movies=@movies.where("tmdbmovies.id in (?)",selected_ids)
+				random_mode
+			# 20170520: created the recommendations mode
+			elsif params[:has_filters]=='N' and Preference.where(user_id: params[:user_id]).count > 100
+				recommendation_mode
 			else
-				# Filtering based on sent parameters
-				# 20170307: changed movie to tmdbmovie
-				params.each do |key,val|
-					if key != 'controller' and key != 'action' and key != 'tmdbmovie' and key !='user_id' and key !='movie' and key != 'random'
-						if key=='release_year'
-							@movies=@movies.where(release_year: val.slice(0,4)..val.slice(4,9))
-				# 20170122: Added the elsif clause to fix the filtering on Genre and Country
-				# 20170205: added spoken_languages and production_countries to the filter
-						elsif (key=='genres' or key=='spoken_languages' or key=='production_countries')
-							@movies=@movies.where("\"#{key}\" LIKE ?","%#{val}%")
-						else
-							@movies=@movies.where(key => val)
-						end
-					end
-				end
-				@movies=@movies.order(popularity: :desc).first(50)
+				normal_mode
 			end
 			
 			# 20170403: if the user is connected with Fb, calculation of the numbre of friends likes for each movie returned
@@ -55,7 +78,7 @@ module Api
 			# 20170306: modified the count to take into account the columns scope
 			# 20170401: changed the output to 50 movies
 			# 20170428: moved the movies ordering and filtering in the else clause above
-			render json: { count: @movies.count(:all), data: @movies }
+			render json: { count: @movies.count(:all), data: @movies.first(50) }
 		end
 	end
 end
