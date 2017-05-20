@@ -32,8 +32,8 @@ module Api
 		
 		def recommendation_mode
 			# Determines the latest recommendations
-			max=Recommendation.where(params[:user_id]).maximum(:created_at)
-			recommendations=Recommendation.where(params[:user_id]).where(created_at: max.midnight..Time.now).pluck(:tmdbmovie_id)
+			max=Recommendation.where("user_id = ?",params[:user_id]).maximum(:created_at)
+			recommendations=Recommendation.where("user_id = ?",params[:user_id]).where(created_at: max.midnight..Time.now).pluck(:tmdbmovie_id)
 			# Selection of recommendations among the tmdbmovies 
 			if @movies.where("id in (?)", recommendations).empty?
 				normal_mode
