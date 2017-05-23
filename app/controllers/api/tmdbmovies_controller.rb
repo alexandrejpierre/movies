@@ -33,7 +33,12 @@ module Api
 		def recommendation_mode
 			# Determines the latest recommendations
 			max=Recommendation.where("user_id = ?",params[:user_id]).maximum(:created_at)
-			recommendations=Recommendation.where("user_id = ?",params[:user_id]).where(created_at: max.midnight..Time.now).pluck(:tmdbmovie_id)
+			# 20170523: handling of the case where max is nil, when a user has no recommendations available
+			if max.nil?
+				normal_mode
+			else
+				recommendations=Recommendation.where("user_id = ?",params[:user_id]).where(created_at: max.midnight..Time.now).pluck(:tmdbmovie_id)
+			end
 			# Selection of recommendations among the tmdbmovies 
 			if @movies.where("tmdbmovies.id in (?)", recommendations).empty?
 				normal_mode
