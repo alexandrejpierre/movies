@@ -84,7 +84,8 @@ module Api
 			# 20170306: modified the count to take into account the columns scope
 			# 20170401: changed the output to 50 movies
 			# 20170428: moved the movies ordering and filtering in the else clause above
-			render json: { count: @movies.count(:all), data: @movies.first(50) }
+			# 20170530: changed the output to 100 movies
+			render json: { count: @movies.count(:all), data: @movies.first(100) }
 		end
 	end
 end
