@@ -11,7 +11,8 @@ module Api
 				@a=false
 			end
 			
-			respond_with @a
+			# 20170611: forced the json rendering
+			render json: @a
 		end
 	
     end
