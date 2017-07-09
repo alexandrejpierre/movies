@@ -16,7 +16,7 @@ module Api
 			# Filtering based on sent parameters
 			# 20170307: changed movie to tmdbmovie
 			params.each do |key,val|
-				if key != 'controller' and key != 'action' and key != 'tmdbmovie' and key !='user_id' and key !='movie' and key != 'random' and key != 'has_filters'
+				if key != 'controller' and key != 'action' and key != 'tmdbmovie' and key !='user_id' and key !='movie' and key != 'random' and key != 'has_filters' and key != 'skipped_movies'
 					if key=='release_year'
 						@movies=@movies.where(release_year: val.slice(0,4)..val.slice(4,9))
 			# 20170122: Added the elsif clause to fix the filtering on Genre and Country
@@ -57,7 +57,12 @@ module Api
 			# 20170306: Added the relevant_columns scope
 			# 20170317: Rollbacked the relevant_columns
 			# 20170401: Updated the relevant columns
-			@movies=Tmdbmovie.relevant_columns.joins("LEFT OUTER JOIN preferences ON preferences.tmdbmovie_id = tmdbmovies.id AND preferences.user_id=#{params[:user_id]}").where("preferences.created_at is ?",nil).where(adult: false)
+			# 20170907: Added the possibility to get again the movies skipped by the user in the past
+			if params[:skipped_movies]=='Y'
+				@movies=Tmdbmovie.relevant_columns.joins("LEFT OUTER JOIN preferences ON preferences.tmdbmovie_id = tmdbmovies.id AND preferences.user_id=#{params[:user_id]} AND preferences.likes in ('Y','N')").where("preferences.created_at is ?",nil).where(adult: false)
+			else
+				@movies=Tmdbmovie.relevant_columns.joins("LEFT OUTER JOIN preferences ON preferences.tmdbmovie_id = tmdbmovies.id AND preferences.user_id=#{params[:user_id]}").where("preferences.created_at is ?",nil).where(adult: false)
+			end
 			# 20170428: Added the if to create the random case
 			if params[:random]=='Y'
 				random_mode
