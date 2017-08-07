@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170426081622) do
+ActiveRecord::Schema.define(version: 20170807143903) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
@@ -141,6 +141,26 @@ ActiveRecord::Schema.define(version: 20170426081622) do
     t.string   "trailer_site_fr"
     t.string   "trailer_url_fr"
     t.integer  "friends_likes"
+    t.integer  "is_adventure"
+    t.integer  "is_family"
+    t.integer  "is_fantasy"
+    t.integer  "is_mystery"
+    t.integer  "is_history"
+    t.integer  "is_action"
+    t.integer  "is_crime"
+    t.integer  "is_comedy"
+    t.integer  "is_thriller"
+    t.integer  "is_drama"
+    t.integer  "is_foreign"
+    t.integer  "is_animation"
+    t.integer  "is_western"
+    t.integer  "is_music"
+    t.integer  "is_war"
+    t.integer  "is_science_fiction"
+    t.integer  "is_horror"
+    t.integer  "is_romance"
+    t.integer  "is_tv_movie"
+    t.integer  "is_documentary"
   end
 
   create_table "users", force: :cascade do |t|
