@@ -73,12 +73,14 @@ module Api
 				normal_mode
 			end
 			
-			# 20170403: if the user is connected with Fb, calculation of the numbre of friends likes for each movie returned
-			# 20170428: calculation for each movie through an SQL query
+			#20170810: added the ability to see the number of likes of friends
+			#20170912: CANCELLED
 			#if User.find_by(id: params[:user_id]).fb_connected == 'Y'
-				#@movies.each do |m|
-					#x=ActiveRecord::Base.connection.execute("SELECT count(*) AS nb FROM preferences p INNER JOIN friendships f ON f.user_id=#{params[:user_id]} AND f.friend_id = p.user_id WHERE p.tmdbmovie_id=#{m.id} AND p.likes='Y'")
-					#m.assign_attributes(friends_likes: x[0]["nb"])
+				#ids=@movies.pluck(:id).sort.first(100)
+				#ids2=ids.to_s.gsub(/[\[\]]/,'[' => '(', ']' => ')')
+				#friends_likes=ActiveRecord::Base.connection.exec_query("SELECT p.tmdbmovie_id, count(*) AS nb FROM preferences p INNER JOIN friendships f ON f.user_id=#{params[:user_id]} AND f.friend_id = p.user_id WHERE p.tmdbmovie_id in #{ids2} AND p.likes='Y' GROUP BY p.tmdbmovie_id").to_hash
+				#friends_likes.each do |hash|
+					#@movies.find_by(id: hash["tmdbmovie_id"]).assign_attributes(friends_likes: hash["nb"])
 				#end
 			#end
 			
